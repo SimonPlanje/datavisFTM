@@ -13,7 +13,9 @@ import React, {useRef} from 'react'
         return(
             <div className='d3div'>
                 <h1>Hi Visualisation</h1>
-
+                <svg width="100%" height="100%">
+ 
+                </svg>
 
             </div>
         )
