@@ -8,7 +8,6 @@ function DataVis(){
   const [facebookState, setFacebookStates] = useState(null)
 
 
-
   useEffect(() => {
 fetchData(setFacebookStates)
   }, [])
