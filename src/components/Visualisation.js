@@ -27,7 +27,7 @@ import {
         .domain([0, max(data, d => d.avarageImpress)])
         .range([3, 20])
 
-    const yScale = scaleBand()
+    const yScale = scaleLinear()
         .domain([uniqueObjects.map(d => d.advertiser_name)])
         .range(["100px", 0])
 
