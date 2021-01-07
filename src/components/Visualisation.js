@@ -9,6 +9,7 @@ import {
     scalePoint,
     axisLeft,
     axisBottom,
+    scaleOrdinal,
     } from 'd3'
 
   function CreateVis({ facebookState }){
@@ -39,8 +40,12 @@ import {
 
     const rScale = scaleLinear()
     .domain(extent(data, d => d.avarageImpress))
-    .range([2, 8])
+    .range([2, 15])
 
+    const gScale = scaleOrdinal()
+        .domain(data.map(d=> d.gender))
+        .range(['dodgerblue', 'pink', 'white' ])
+console.log(gScale.domain())
 
 
 const g = svg.append('g')
@@ -51,15 +56,19 @@ const g = svg.append('g')
             .attr('cx', d => xScale(d.ad_delivery_start_time))
             .attr('cy', d => yScale(d.advertiser_name))
             .attr('r', d => rScale(d.avarageImpress))
-            .style('fill', 'dodgerblue')
+            .style("opacity", 0.01)
+            .style('fill', d => gScale(d.gender))
 
     g
         .append('g')
+        .attr("class", "xScale")
         .attr('transform', `translate(${0},${innerHeight})`)
         .call(axisBottom(xScale))
 
+
     g
         .append('g')
+        .attr("class", "yScale")
         .attr('transform', `translate(${0},${0})`)
         .call(axisLeft(yScale))
             

@@ -3,3 +3,11 @@
   padding: 0;
 }
 
+.SVG {
+  background-color: black;
+}
+
+.yScale, .xScale{
+  color: white;
+
+}
