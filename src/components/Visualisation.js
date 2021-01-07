@@ -3,7 +3,6 @@ import React, {useRef} from 'react'
 import {
     select,
     scaleLinear,
-    max,
     scaleTime,
     extent,
     scalePoint,
