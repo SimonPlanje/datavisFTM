@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
 import CreateVis from '../Visualisation'
 import fetchData from '../../helper/fetchData'
@@ -6,7 +6,7 @@ import fetchData from '../../helper/fetchData'
 function DataVis(){
      
   const [facebookState, setFacebookStates] = useState(null)
-
+  const svgRef = useRef()
 
   useEffect(() => {
 fetchData(setFacebookStates)
@@ -19,7 +19,7 @@ fetchData(setFacebookStates)
     return(
         <div className="SVGdiv">
           <h1>Instance bubble chart</h1>
-          <CreateVis facebookState={facebookState} />
+          <CreateVis svgRef={svgRef} facebookState={facebookState} />
         </div>
     )
 }
