@@ -6,59 +6,67 @@ import {
     max,
     scaleTime,
     extent,
-    scaleOrdinal
-} from 'd3'
+    scalePoint,
+    axisLeft,
+    axisBottom,
+    } from 'd3'
+
+  function CreateVis({ facebookState }){
 
 
-
-  function CreateVis({ facebookState, svgRef }){
 
     if(facebookState){
-
-
     const data = facebookState.age_gender_target;
 
-    //filter out all the unique companies
-    const uniqueObjects = [...new Map(data.map(item => [item.advertiser_name, item])).values()]
-    //source: https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep
-    console.log(uniqueObjects)
+    const svg = select('svg')
 
-    
-    const rScale = scaleLinear()
-        .domain([0, max(data, d => d.avarageImpress)])
-        .range([3, 20])
+    const width = 960
+    const height = 500
 
-    const yScale = scaleOrdinal()
-        .domain([uniqueObjects.map(d => d.advertiser_name)])
-        .range([0, "100%"])
+    const margin = { top: 60, right: 40, bottom: 88, left: 105 };
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
 
-
+    //define scales
 
     const xScale = scaleTime()
         .domain(extent(data, d => d.ad_delivery_start_time))
-        .range([0, "100%"])
+        .range([0, innerWidth])
 
-  
+    const yScale = scalePoint()
+        .domain(data.map(d => d.advertiser_name))
+        .range([innerHeight, 0])
 
-        console.log(xScale.domain())
-        console.log(yScale.domain())
+    const rScale = scaleLinear()
+    .domain(extent(data, d => d.avarageImpress))
+    .range([2, 8])
 
-        
+
+
+const g = svg.append('g')
+        .attr('transform', `translate(${margin.left},${margin.right})`)
+
+    g.selectAll('circles').data(data)
+        .enter().append('circle')
+            .attr('cx', d => xScale(d.ad_delivery_start_time))
+            .attr('cy', d => yScale(d.advertiser_name))
+            .attr('r', d => rScale(d.avarageImpress))
+            .style('fill', 'dodgerblue')
+
+    g
+        .append('g')
+        .attr('transform', `translate(${0},${innerHeight})`)
+        .call(axisBottom(xScale))
+
+    g
+        .append('g')
+        .attr('transform', `translate(${0},${0})`)
+        .call(axisLeft(yScale))
+            
+       
        return(
             <div className='d3div'>
-                <svg className="SVG" width="100vh" height="100vh">
-
-
-                    <g className='visBox'>
-                {data.map((result, index) =>(
-                     <circle key={index} cy={yScale(result.advertiser_name)} cx={xScale(result.ad_delivery_start_time)} r={rScale(result.avarageImpress)} fill="black" />
-                    ))} 
-                    </g>
-                    <g className='sizeCircle'>
-                {data.map((result, index) =>(
-                     <circle key={index} r={rScale(result.avarageImpress)} height="10px" fill="black" />
-                    ))} 
-                    </g>
+                <svg className="SVG" width={width} height={height}>
 
  
                 </svg>

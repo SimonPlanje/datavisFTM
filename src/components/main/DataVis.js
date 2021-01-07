@@ -6,7 +6,6 @@ import fetchData from '../../helper/fetchData'
 function DataVis(){
      
   const [facebookState, setFacebookStates] = useState(null)
-  const svgRef = useRef()
 
   useEffect(() => {
 fetchData(setFacebookStates)
@@ -19,7 +18,7 @@ fetchData(setFacebookStates)
     return(
         <div className="SVGdiv">
           <h1>Instance bubble chart</h1>
-          <CreateVis svgRef={svgRef} facebookState={facebookState} />
+          <CreateVis facebookState={facebookState} />
         </div>
     )
 }
