@@ -13,8 +13,6 @@ import {
 
   function CreateVis({ facebookState }){
 
-
-
     if(facebookState){
     const data = facebookState.age_gender_target;
 

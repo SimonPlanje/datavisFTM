@@ -2,6 +2,10 @@ import React, { useEffect, useState, useRef } from 'react'
 
 import CreateVis from '../Visualisation'
 import fetchData from '../../helper/fetchData'
+import Header from '../Header'
+import DataEx1 from './intro/DataEx1'
+import DataEx2 from './intro/DataEx2'
+
 
 function DataVis(){
      
@@ -17,7 +21,9 @@ fetchData(setFacebookStates)
   
     return(
         <div className="SVGdiv">
-          <h1>Instance bubble chart</h1>
+          <Header />
+          <DataEx1 />
+          <DataEx2 />
           <CreateVis facebookState={facebookState} />
         </div>
     )
