@@ -1,13 +1,37 @@
+:root {
+  --dark: #252626;
+ --white: #ececec;
+}
+
 * {
   margin: 0;
   padding: 0;
 }
 
+body{
+  margin: 0 50px;
+  background-color: var(--dark);
+}
+
 .SVG {
-  background-color: black;
+  background-color: var(--dark);
 }
 
 .yScale, .xScale{
-  color: white;
-
+  color: var(--white);
 }
+
+h1, h2 {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 2em;
+  color: var(--white);
+}
+
+p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--white);
+}
+
+  .headerImg{
+    max-height: 70vh;
+  }

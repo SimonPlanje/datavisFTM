@@ -9,11 +9,13 @@ import {
     axisLeft,
     axisBottom,
     scaleOrdinal,
+    
     } from 'd3'
 
-  function CreateVis({ facebookState }){
+  function CreateVis({ facebookState, filterData }){
 
     if(facebookState){
+        <h1>Dashboard</h1>
     const data = facebookState.age_gender_target;
 
     const svg = select('svg')
@@ -37,13 +39,19 @@ import {
 
     const rScale = scaleLinear()
     .domain(extent(data, d => d.avarageImpress))
-    .range([2, 15])
+    .range([8, 25])
 
     const gScale = scaleOrdinal()
         .domain(data.map(d=> d.gender))
-        .range(['dodgerblue', 'pink', 'white' ])
-console.log(gScale.domain())
+        .range(['cyan', 'pink', 'white' ])
 
+function plotData()
+    let setData = d => gScale(d.gender)
+    if(filterData == 'age'){
+        setData  = d => gScale(d.age)
+    }else{
+        setData = d => gScale(d.gender)
+    }
 
 const g = svg.append('g')
         .attr('transform', `translate(${margin.left},${margin.right})`)
@@ -52,22 +60,32 @@ const g = svg.append('g')
         .enter().append('circle')
             .attr('cx', d => xScale(d.ad_delivery_start_time))
             .attr('cy', d => yScale(d.advertiser_name))
-            .attr('r', d => rScale(d.avarageImpress))
-            .style("opacity", 0.01)
-            .style('fill', d => gScale(d.gender))
+            .attr('r', 10)
+            .style("opacity", 0.04)
+            .style('fill', 'black')
+            .style('stroke', setData)
+            .style('stroke-width', d => rScale(d.avarageImpress))
+    // g
+    //     .append('g')
+    //     .attr("class", "xScale")
+    //     .attr('transform', `translate(${0},${innerHeight})`)
+    //     .call(axisBottom(xScale))
+    //     .select('.domain')
+    //     .remove()
 
-    g
-        .append('g')
-        .attr("class", "xScale")
-        .attr('transform', `translate(${0},${innerHeight})`)
-        .call(axisBottom(xScale))
+const yAxis = axisLeft(yScale)
+        .tickSize(-innerWidth)
 
-
-    g
+    const yAxisG = g
         .append('g')
         .attr("class", "yScale")
-        .attr('transform', `translate(${0},${0})`)
-        .call(axisLeft(yScale))
+        .attr('transform', `translate(${1},${0})`)
+        .call(yAxis)
+
+        yAxisG
+        .selectAll('.domain').remove()
+
+
             
        
        return(
