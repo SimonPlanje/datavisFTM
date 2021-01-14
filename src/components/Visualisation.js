@@ -16,7 +16,7 @@ import {
 
     if(facebookState){
         <h1>Dashboard</h1>
-    const data = facebookState.age_gender_target;
+    const data = facebookState;
 
     const svg = select('svg')
 
@@ -35,7 +35,7 @@ import {
 
     const yScale = scalePoint()
         .domain(data.map(d => d.advertiser_name))
-        .range([innerHeight, 0])
+        .range([innerHeight, 1])
 
     const rScale = scaleLinear()
     .domain(extent(data, d => d.avarageImpress))
@@ -43,15 +43,10 @@ import {
 
     const gScale = scaleOrdinal()
         .domain(data.map(d=> d.gender))
-        .range(['cyan', 'pink', 'white' ])
+        .range(['cyan', 'pink' ])
 
-// function plotData()
-//     let setData = d => gScale(d.gender)
-//     if(filterData == 'age'){
-//         setData  = d => gScale(d.age)
-//     }else{
-//         setData = d => gScale(d.gender)
-//     }
+        console.log(data.male)
+
 
 const g = svg.append('g')
         .attr('transform', `translate(${margin.left},${margin.right})`)
@@ -61,7 +56,7 @@ const g = svg.append('g')
             .attr('cx', d => xScale(d.ad_delivery_start_time))
             .attr('cy', d => yScale(d.advertiser_name))
             .attr('r', 10)
-            .style("opacity", 0.04)
+            .style("opacity", 0.05)
             .style('fill', 'black')
             .style('stroke', d => gScale(d.gender))
             .style('stroke-width', d => rScale(d.avarageImpress))
