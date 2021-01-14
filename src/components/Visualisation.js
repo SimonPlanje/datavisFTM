@@ -41,11 +41,11 @@ import {
     .domain(extent(data, d => d.avarageImpress))
     .range([8, 25])
 
+    const male = data.male_fifty + data.male_fourty + data.male_sixty + data.male_teener + data.male_thridy + data.male_twenty + data.male_young
+
     const gScale = scaleOrdinal()
         .domain(data.map(d=> d.gender))
         .range(['cyan', 'pink' ])
-
-        console.log(data.male)
 
 
 const g = svg.append('g')
