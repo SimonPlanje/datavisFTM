@@ -13,13 +13,7 @@ import {
     } from 'd3'
 
   function CreateVis({ facebookState, filterData }){
-
-    if(facebookState){
-        <h1>Dashboard</h1>
-    const data = facebookState;
-
-    const svg = select('svg')
-
+    
     const width = 960
     const height = 500
 
@@ -27,42 +21,74 @@ import {
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    //define scales
+    const svg = select('svg')
+    
+    const g = svg.select('g')
+    .attr('transform', `translate(${margin.left},${margin.right})`)
 
-    const xScale = scaleTime()
-        .domain(extent(data, d => d.ad_delivery_start_time))
-        .range([0, innerWidth])
+    if(facebookState != null){
+    const data = facebookState;
 
-    const yScale = scalePoint()
-        .domain(data.map(d => d.advertiser_name))
-        .range([innerHeight, 1])
+       //define scales
+       const xScale = scaleTime()
+       .domain(extent(data, d => d.ad_delivery_start_time))
+       .range([0, innerWidth])
 
-    const rScale = scaleLinear()
-    .domain(extent(data, d => d.avarageImpress))
-    .range([8, 25])
+   const yScale = scalePoint()
+       .domain(data.map(d => d.advertiser_name))
+       .range([innerHeight, 1])
 
-    const male = data.male_fifty + data.male_fourty + data.male_sixty + data.male_teener + data.male_thridy + data.male_twenty + data.male_young
-
-    const gScale = scaleOrdinal()
-        .domain(data.map(d=> d.gender))
-        .range(['cyan', 'pink' ])
-
-
-const g = svg.append('g')
-        .attr('transform', `translate(${margin.left},${margin.right})`)
-
-    g.selectAll('circles').data(data)
-        .enter().append('circle')
-            .attr('cx', d => xScale(d.ad_delivery_start_time))
-            .attr('cy', d => yScale(d.advertiser_name))
-            .attr('r', 10)
-            .style("opacity", 0.05)
-            .style('fill', 'black')
-            .style('stroke', d => gScale(d.gender))
-            .style('stroke-width', d => rScale(d.avarageImpress))
+   const rScale = scaleLinear()
+   .domain(extent(data, d => d.avarageImpress))
+   .range([8, 25])
 
 
-const yAxis = axisLeft(yScale)
+   const gScale = scaleOrdinal()
+       .domain([extent(data, d => d.male), extent(data, d => d.female)])
+       .range(['#00B1FF', '#FF32AE' ])
+
+       console.log(gScale.domain())
+
+   const aScale = scaleOrdinal()
+       .domain(["young", "twenty", "thirdy", "fourty", "fifty", "sixty"])
+       .range(['white'])
+
+
+//render function
+    const render = () => {
+        if(filterData === "gender"){
+            g.selectAll('circles').data(data)
+            .enter().append('circle')
+                .attr('cx', d => xScale(d.ad_delivery_start_time))
+                .attr('cy', d => yScale(d.advertiser_name))
+                .attr('r', 2)
+                .style("opacity", 1)
+                .style('fill', 'white')
+                .style('stroke', d => gScale(d.male))
+                .style('stroke-opacity', 0.1)
+                .style('stroke-width', d => rScale(d.avarageImpress))
+
+                g.selectAll('circles').data(data)
+                .exit().remove()
+
+
+        }
+        else if(filterData === "age"){
+            g.selectAll('circles').data(data)
+            .enter().append('circle')
+                .attr('cx', d => xScale(d.ad_delivery_start_time))
+                .attr('cy', d => yScale(d.advertiser_name))
+                .attr('r', 2)
+                .style("opacity", 1)
+                .style('fill', 'white')
+                .style('stroke', d => aScale(d.thirdy))
+                .style('stroke-opacity', 0.2)
+                .style('stroke-width', d => rScale(d.avarageImpress))
+        }
+    }
+
+
+    const yAxis = axisLeft(yScale)
         .tickSize(-innerWidth)
 
     const yAxisG = g
@@ -74,12 +100,12 @@ const yAxis = axisLeft(yScale)
         yAxisG
         .selectAll('.domain').remove()
 
-
-            
+           render(); 
        
        return(
             <div className='d3div'>
                 <svg className="SVG" width={width} height={height}>
+                    <g></g>
                 </svg>
             </div>
         )
