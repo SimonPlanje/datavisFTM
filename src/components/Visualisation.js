@@ -45,13 +45,6 @@ import {
         .domain(data.map(d=> d.gender))
         .range(['cyan', 'pink', 'white' ])
 
-function plotData()
-    let setData = d => gScale(d.gender)
-    if(filterData == 'age'){
-        setData  = d => gScale(d.age)
-    }else{
-        setData = d => gScale(d.gender)
-    }
 
 const g = svg.append('g')
         .attr('transform', `translate(${margin.left},${margin.right})`)
@@ -60,10 +53,9 @@ const g = svg.append('g')
         .enter().append('circle')
             .attr('cx', d => xScale(d.ad_delivery_start_time))
             .attr('cy', d => yScale(d.advertiser_name))
-            .attr('r', 10)
+            .attr('r', 5)
             .style("opacity", 0.04)
             .style('fill', 'black')
-            .style('stroke', setData)
             .style('stroke-width', d => rScale(d.avarageImpress))
     // g
     //     .append('g')
@@ -79,7 +71,7 @@ const yAxis = axisLeft(yScale)
     const yAxisG = g
         .append('g')
         .attr("class", "yScale")
-        .attr('transform', `translate(${1},${0})`)
+        .attr('transform', `translate(${0},${0})`)
         .call(yAxis)
 
         yAxisG
