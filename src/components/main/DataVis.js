@@ -11,7 +11,7 @@ import Filter from './Filter'
 function DataVis(){
      
   const [facebookState, setFacebookStates] = useState(null)
-  const [filterData, setFilterData] = useState(null)
+  const [filterData, setFilterData] = useState("gender")
 
 
   useEffect(() => {
@@ -28,7 +28,7 @@ fetchData(setFacebookStates)
           <DataEx1 />
           <DataEx2 />
           <Filter facebookState={facebookState} setFilterData={setFilterData} />
-          <CreateVis facebookState={facebookState} />
+          <CreateVis facebookState={facebookState} filterData={filterData} />
         </div>
     )
 }

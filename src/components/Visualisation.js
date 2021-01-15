@@ -13,13 +13,7 @@ import {
     } from 'd3'
 
   function CreateVis({ facebookState, filterData }){
-
-    if(facebookState){
-        <h1>Dashboard</h1>
-    const data = facebookState.age_gender_target;
-
-    const svg = select('svg')
-
+    
     const width = 960
     const height = 500
 
@@ -27,45 +21,67 @@ import {
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    //define scales
+    const svg = select('svg')
+    
+    const g = svg.select('g')
+    .attr('transform', `translate(${margin.left},${margin.right})`)
 
-    const xScale = scaleTime()
-        .domain(extent(data, d => d.ad_delivery_start_time))
-        .range([0, innerWidth])
+    if(facebookState != null){
+    const data = facebookState;
 
-    const yScale = scalePoint()
-        .domain(data.map(d => d.advertiser_name))
-        .range([innerHeight, 0])
+       //define scales
+       const xScale = scaleTime()
+       .domain(extent(data, d => d.ad_delivery_start_time))
+       .range([0, innerWidth])
 
-    const rScale = scaleLinear()
-    .domain(extent(data, d => d.avarageImpress))
-    .range([8, 25])
+   const yScale = scalePoint()
+       .domain(data.map(d => d.advertiser_name))
+       .range([innerHeight, 1])
 
-    const gScale = scaleOrdinal()
-        .domain(data.map(d=> d.gender))
-        .range(['cyan', 'pink', 'white' ])
+   const rScale = scaleLinear()
+   .domain(extent(data, d => d.avarageImpress))
+   .range([8, 25])
 
 
-const g = svg.append('g')
-        .attr('transform', `translate(${margin.left},${margin.right})`)
+   const gScale = scaleOrdinal()
+       .domain([extent(data, d => d.male), extent(data, d => d.female)])
+       .range(['#00B1FF', '#FF32AE' ])
 
-    g.selectAll('circles').data(data)
-        .enter().append('circle')
-            .attr('cx', d => xScale(d.ad_delivery_start_time))
-            .attr('cy', d => yScale(d.advertiser_name))
-            .attr('r', 5)
-            .style("opacity", 0.04)
-            .style('fill', 'black')
-            .style('stroke-width', d => rScale(d.avarageImpress))
-    // g
-    //     .append('g')
-    //     .attr("class", "xScale")
-    //     .attr('transform', `translate(${0},${innerHeight})`)
-    //     .call(axisBottom(xScale))
-    //     .select('.domain')
-    //     .remove()
+       console.log(gScale.domain())
 
-const yAxis = axisLeft(yScale)
+   const aScale = scaleOrdinal()
+       .domain(["young", "twenty", "thirdy", "fourty", "fifty", "sixty"])
+       .range(['green', 'orange'])
+
+
+//render function
+    const render = () => {
+
+        let strokeVar = null;
+        if(filterData === "gender"){
+            strokeVar = d => gScale(d.male)
+        }
+        else if(filterData === "age"){
+           strokeVar =  d => aScale(d.thirdy)
+        }
+
+        g.selectAll('circles').data(data)
+            .enter().append('circle')
+                .attr('cx', d => xScale(d.ad_delivery_start_time))
+                .attr('cy', d => yScale(d.advertiser_name))
+                .attr('r', 2)
+                .style("opacity", 1)
+                .style('fill', 'white')
+                .style('stroke', strokeVar)
+                .style('stroke-opacity', 0.2)
+                .style('stroke-width', d => rScale(d.avarageImpress))
+
+        g.selectAll('circles').data(data)
+        .exit().remove()
+    }
+
+
+    const yAxis = axisLeft(yScale)
         .tickSize(-innerWidth)
 
     const yAxisG = g
@@ -78,15 +94,13 @@ const yAxis = axisLeft(yScale)
         .selectAll('.domain').remove()
 
 
-            
+           render(); 
        
        return(
             <div className='d3div'>
                 <svg className="SVG" width={width} height={height}>
-
- 
+                    <g></g>
                 </svg>
-
             </div>
         )
     } else{
