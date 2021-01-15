@@ -11,11 +11,11 @@ import Filter from './Filter'
 function DataVis(){
      
   const [facebookState, setFacebookStates] = useState(null)
-  const [filterData, setFilterData] = useState("gender")
+  const [filterData, setFilterData] = useState(null)
 
 
   useEffect(() => {
-fetchData(setFacebookStates)
+fetchData(setFacebookStates, setFilterData)
   }, [])
 
     // useEffect(() => {

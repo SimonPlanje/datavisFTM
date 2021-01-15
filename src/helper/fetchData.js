@@ -1,7 +1,7 @@
 import {json} from 'd3'
 import { render } from 'react-dom'
 
-const fetchData = (setFacebookStates) =>{
+const fetchData = (setFacebookStates, setFilterData) =>{
 
     const facebookData = "https://raw.githubusercontent.com/SimonPlanje/datavisFTM/main/public/data/data.json"
 
@@ -27,6 +27,7 @@ const fetchData = (setFacebookStates) =>{
         })
 
         setFacebookStates(data)
+        setFilterData('gender')
         
     })
 }

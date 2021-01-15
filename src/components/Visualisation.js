@@ -54,6 +54,22 @@ import {
        .range(['green', 'orange'])
 
 
+
+
+       const yAxis = axisLeft(yScale)
+       .tickSize(-innerWidth)
+
+   const yAxisG = g
+       .append('g')
+       .attr("class", "yScale")
+       .attr('transform', `translate(${0},${0})`)
+       .call(yAxis)
+
+       yAxisG
+       .selectAll('.domain').remove()
+
+
+
 //render function
     const render = () => {
 
@@ -81,18 +97,7 @@ import {
     }
 
 
-    const yAxis = axisLeft(yScale)
-        .tickSize(-innerWidth)
-
-    const yAxisG = g
-        .append('g')
-        .attr("class", "yScale")
-        .attr('transform', `translate(${0},${0})`)
-        .call(yAxis)
-
-        yAxisG
-        .selectAll('.domain').remove()
-
+   
 
            render(); 
        
