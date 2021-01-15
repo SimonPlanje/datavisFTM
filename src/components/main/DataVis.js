@@ -27,7 +27,7 @@ fetchData(setFacebookStates, setFilterData)
           <Header />
           <DataEx1 />
           <DataEx2 />
-          <Filter facebookState={facebookState} setFilterData={setFilterData} />
+          <Filter facebookState={facebookState} setFilterData={setFilterData} filterData={filterData}/>
           <CreateVis facebookState={facebookState} filterData={filterData} />
         </div>
     )
