@@ -48,8 +48,6 @@ import {
        .domain([extent(data, d => d.male), extent(data, d => d.female)])
        .range(['var(--blue)', 'var(--pink)' ])
 
-       console.log(gScale.domain())
-
    const aScale = scaleOrdinal()
        .domain(["young", "twenty", "thirdy", "fourty", "fifty", "sixty"])
        .range(['var(--blue)', 'var(--darkblue)'])
@@ -98,6 +96,7 @@ const render = () => {
     
         circles
         .enter().append('circle')
+            .attr('class', 'circles')
             .attr('cx', d => xScale(d.ad_delivery_start_time))
             .attr('cy', d => yScale(d.advertiser_name))
             .attr('r', 2)
@@ -108,6 +107,7 @@ const render = () => {
             .style('stroke-width', d => rScale(d.avarageImpress))
         circles
         .style('stroke', strokeVar)
+        .on('click', handleMouseOver)
 
 
         circles
@@ -115,8 +115,28 @@ const render = () => {
         }
 
  
+        function handleMouseOver(d, i) {  // Add interactivity
 
-            
+            // Use D3 to select element, change color and size
+            select(this)
+            .attr('fill', 'black')
+            .attr('r', 20)
+            console.log(d.toElement.__data__)
+            // Specify where to put label of text
+            g.append('rect')
+                .attr('width', 200)
+                .attr('height', 200)
+                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time))
+                .attr('y', yScale(d.toElement.__data__.advertiser_name))
+                .attr('fill', 'red')
+
+
+            g.append("text")
+                .text(d.toElement.__data__.avarageImpress)
+                .attr('id', d.toElement.__data__.advertiser_id)
+                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time))
+                .attr('y', yScale(d.toElement.__data__.advertiser_name))
+          }
 
        render()
        return(

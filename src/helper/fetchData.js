@@ -1,12 +1,24 @@
 import {json} from 'd3'
-import { render } from 'react-dom'
 
 const fetchData = (setFacebookStates, setFilterData) =>{
 
     const facebookData = "https://raw.githubusercontent.com/SimonPlanje/datavisFTM/main/public/data/data.json"
 
     json(facebookData).then(data => {
-        console.log(data)
+
+    //     for(let i=0; i<data.length-1; ++i) {
+    //         if(data[i].ad_delivery_start_time === data[i+1].ad_delivery_start_time && data[i].advertiser_name === data[i+1].advertiser_name){
+    
+    //             let objectClone = [data[i].avarageImpress + data[i+1].avarageImpress]
+    //             console.log(data[i])
+    //             // console.log(data[i].avarageImpress + data[i+1].avarageImpress)   
+  
+    //         }
+    //     else{
+    //         console.log(false)
+    //     }
+    // }
+    
 
         data.forEach(d => {
             d.ad_delivery_start_time = new Date(d.ad_delivery_start_time)
@@ -23,9 +35,10 @@ const fetchData = (setFacebookStates, setFilterData) =>{
             d.fourty =  +d.unknown_fourty + +d.male_fourty + +d.female_fourty
             d.fifty = +d.unknown_fifty + +d.male_fifty + +d.female_fifty
             d.sixty = +d.unknown_sixty + +d.male_sixty + +d.female_sixty
-
         })
 
+
+        console.log(data)
         setFacebookStates(data)
         setFilterData('gender')
         

@@ -23,6 +23,10 @@ body{
   background-color: var(--dark);
 }
 
+.circles:hover{
+  cursor: pointer;
+}
+
 .SVG {
   background-color: var(--dark);
 }
@@ -47,9 +51,6 @@ p {
   }
 
 
-
-
-
   /* filter Styling */
 
   .filterForm {
@@ -67,6 +68,10 @@ p {
     margin-left: 1em; 
     padding: .8em;
     border-radius: .1em;
+  }
+
+  .filterForm label:hover {
+    cursor: pointer;
   }
 
   .filterForm label input {
@@ -123,9 +128,10 @@ height: 5em;
 .filter li{
   list-style-type: none;
   color: white;
-  
 }
 /* svg coloring */
 .cls-1 {
   fill: #ececec;
   }
+
+
