@@ -2,6 +2,7 @@ import React, {useRef} from 'react'
 
 import {
     select,
+    selectAll,
     scaleLinear,
     scaleTime,
     extent,
@@ -9,6 +10,7 @@ import {
     axisLeft,
     axisBottom,
     scaleOrdinal,
+    text,
     
     } from 'd3'
 
@@ -25,9 +27,7 @@ import {
     const g = select ('g')
     .attr('transform', `translate(${margin.left},${margin.right})`)
 
-    
-
-    if(facebookState != null){
+   if(facebookState != null){
     const data = facebookState;
 
        //define scales
@@ -107,7 +107,8 @@ const render = () => {
             .style('stroke-width', d => rScale(d.avarageImpress))
         circles
         .style('stroke', strokeVar)
-        .on('click', handleMouseOver)
+        .on('mouseover', handleMouseOver)
+        .on('mouseout', handleMouseOut)
 
 
         circles
@@ -119,23 +120,47 @@ const render = () => {
 
             // Use D3 to select element, change color and size
             select(this)
-            .attr('fill', 'black')
             .attr('r', 20)
-            console.log(d.toElement.__data__)
+            .attr('id', d.toElement.__data__.advertiser_id)
+
+
+            console.log(d.toElement.__data__.advertiser_id)
             // Specify where to put label of text
             g.append('rect')
                 .attr('width', 200)
                 .attr('height', 200)
-                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time))
-                .attr('y', yScale(d.toElement.__data__.advertiser_name))
-                .attr('fill', 'red')
-
-
-            g.append("text")
-                .text(d.toElement.__data__.avarageImpress)
                 .attr('id', d.toElement.__data__.advertiser_id)
                 .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time))
                 .attr('y', yScale(d.toElement.__data__.advertiser_name))
+                .attr('fill', 'white')
+
+
+            g.append("text")
+                .text(d.toElement.__data__.avarageImpress + ' keer bekeken')
+                .attr('id', d.toElement.__data__.advertiser_id)
+                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+30)
+                .style('font-family', 'IBM Plex Sans')
+
+
+            g.append("text")
+                .text('€ ' + d.toElement.__data__.avarageSpend + ',-')
+                .attr('id', d.toElement.__data__.advertiser_id)
+                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+60)
+                .style('font-family', 'IBM Plex Sans')
+          }
+
+
+         function handleMouseOut(d, i) {  // Add interactivity
+            select(this)
+            .attr('id', d.target.__data__.advertiser_id)
+            .attr('fill', 'white')
+            .attr('r', 2)
+           console.log('.' + +d.target.__data__.advertiser_id) 
+            selectAll('rect').remove()
+            selectAll('#' + d.target.__data__.advertiser_id).remove()
+
           }
 
        render()
