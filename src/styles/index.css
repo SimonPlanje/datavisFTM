@@ -1,6 +1,16 @@
 :root {
-  --dark: #252626;
+  --dark: #000000;
  --white: #ececec;
+
+ --blue: #00B1FF ;
+ --pink: #FF32AE;
+ --lightblue:#00ffd5;
+ --darkblue: #3209b8;
+
+
+ /* filter */
+ --darktone: #292F32;
+ --lighttone: #666666;
 }
 
 * {
@@ -11,6 +21,10 @@
 body{
   margin: 0 50px;
   background-color: var(--dark);
+}
+
+.circles:hover{
+  cursor: pointer;
 }
 
 .SVG {
@@ -35,3 +49,89 @@ p {
   .headerImg{
     max-height: 70vh;
   }
+
+
+  /* filter Styling */
+
+  .filterForm {
+    display: flex;
+    justify-content: flex-end;
+    }
+
+ .filterForm label {
+    background-color: var(--lighttone);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: .8em;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--white);    
+    margin-left: 1em; 
+    padding: .8em;
+    border-radius: .1em;
+  }
+
+  .filterForm label:hover {
+    cursor: pointer;
+  }
+
+  .filterForm label input {
+    display: none;
+    position: absolute;
+  
+  }
+
+.filterForm .checked{
+  background-color: var(--darktone);
+  font-weight: 600;
+
+}
+
+.filterForm .unchecked {
+  color: lightgrey;
+}
+
+
+/* legend dashboard */
+
+.legend {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: var(--dark);
+  padding: 1em;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+
+
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: lighter;
+}
+.LGender, .LAge{
+width: .8em;
+height: 5em;
+}
+.LGender {
+  background: linear-gradient(0deg,var(--pink) 0%, var(--blue) 100%);
+}
+.LAge {
+  background: linear-gradient(0deg,var(--lightblue) 0%, var(--darkblue) 100%);
+}
+
+.filter ul{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 3em;
+  margin-left: 1em;
+}
+
+.filter li{
+  list-style-type: none;
+  color: white;
+}
+/* svg coloring */
+.cls-1 {
+  fill: #ececec;
+  }
+
+
