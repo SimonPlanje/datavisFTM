@@ -1,5 +1,3 @@
-import React, {useRef} from 'react'
-
 import {
     select,
     selectAll,
@@ -24,8 +22,9 @@ import {
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    const g = select ('g')
+    const g = select('.dashboardGroup')
     .attr('transform', `translate(${margin.left},${margin.right})`)
+
 
    if(facebookState != null){
     const data = facebookState;
@@ -119,25 +118,28 @@ const render = () => {
         function handleMouseOver(d, i) {  // Add interactivity
 
             // Use D3 to select element, change color and size
-            select(this)
+            let detail = select(this)
+
+            detail
             .attr('r', 20)
-            .attr('id', d.toElement.__data__.advertiser_id)
+            .text('€ ' + d.toElement.__data__.avarageSpend + ',-')
+            .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+            .attr('y', yScale(d.toElement.__data__.advertiser_name)+60)
+            .style('font-family', 'IBM Plex Sans')
 
-
-            console.log(d.toElement.__data__.advertiser_id)
             // Specify where to put label of text
             g.append('rect')
                 .attr('width', 200)
                 .attr('height', 200)
-                .attr('id', d.toElement.__data__.advertiser_id)
+                .attr('class', d.toElement.__data__.advertiser_id)
                 .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time))
                 .attr('y', yScale(d.toElement.__data__.advertiser_name))
                 .attr('fill', 'white')
 
 
-            g.append("text")
+                g.append("text")
                 .text(d.toElement.__data__.avarageImpress + ' keer bekeken')
-                .attr('id', d.toElement.__data__.advertiser_id)
+                .attr('class', d.toElement.__data__.advertiser_id)
                 .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
                 .attr('y', yScale(d.toElement.__data__.advertiser_name)+30)
                 .style('font-family', 'IBM Plex Sans')
@@ -145,7 +147,7 @@ const render = () => {
 
             g.append("text")
                 .text('€ ' + d.toElement.__data__.avarageSpend + ',-')
-                .attr('id', d.toElement.__data__.advertiser_id)
+                .attr('class', d.toElement.__data__.advertiser_id)
                 .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
                 .attr('y', yScale(d.toElement.__data__.advertiser_name)+60)
                 .style('font-family', 'IBM Plex Sans')
@@ -153,21 +155,27 @@ const render = () => {
 
 
          function handleMouseOut(d, i) {  // Add interactivity
-            select(this)
+            let element = select(`[class=` + '"' + d.target.__data__.advertiser_id + '"' + ']')
+
+            console.log(element)
+            select(`[class="${d.target.__data__.advertiser_id}"]`)
+            .remove()
+
+
             .attr('id', d.target.__data__.advertiser_id)
             .attr('fill', 'white')
             .attr('r', 2)
-           console.log('.' + +d.target.__data__.advertiser_id) 
-            selectAll('rect').remove()
-            selectAll('#' + d.target.__data__.advertiser_id).remove()
+        //    console.log('.' + +d.target.__data__.advertiser_id) 
+            // selectAll('rect').remove()
+        //     selectAll('#' + d.target.__data__.advertiser_id).remove()
 
           }
 
        render()
        return(
             <div className='d3div'>
-                <svg className="svg" width={width} height={height}>
-                    <g></g>
+                <svg className="dashboard" width={width} height={height}>
+                    <g className='dashboardGroup'></g>
                 </svg>
             </div>
         )
