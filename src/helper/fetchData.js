@@ -147,18 +147,20 @@ console.log(politicsArray)
 const arrAvg = arr => {
     politicsArray.push(arr.reduce((a,b) => a + b, 0) / arr.length)}
 
-arrAvg(valuessp)
-arrAvg(valuesvvd)
-arrAvg(valuesdenk)
-arrAvg(valuespvdd)
+
+
 arrAvg(valuespvda)
-arrAvg(valuesgroenlinks)
 arrAvg(valueschristenunie)
+arrAvg(valuespvdd)
+arrAvg(valuesgroenlinks)
 arrAvg(valuesplus)
+arrAvg(valuesd66)
 arrAvg(valuessgp)
 arrAvg(valuescda)
+arrAvg(valuessp)
+arrAvg(valuesdenk)
+arrAvg(valuesvvd)
 arrAvg(valuesfvd)
-arrAvg(valuesd66)
 
 const getCompanies = ['SP', 'VVD', 'DENK', 'PvdD', 'PvdA', 'GroenLinks', 'ChristenUnie', '50Plus', 'SGP', 'CDA', 'FvD', 'D66']
 

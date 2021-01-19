@@ -11,54 +11,48 @@ import {
     
     } from 'd3'
 
-function Vis1({ barState, setBarState }){
+function Vis1({ barState }){
 
-    const width = 600
+    const width = 800
     const height = 700
 
     const margin = { top: 60, right: 40, bottom: 88, left: 105 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-
     const g = select ('.vis1')
     .attr('transform', `translate(${margin.left},${margin.right})`)
-
-    
 
     if(barState != null){
     const data = barState;
 
-
     const yScale = scaleLinear()
-    .domain([0, 1])
-    .range([innerHeight, 0])
+    .domain([0,1])
+    .range([0, innerHeight])
 
     const xScale = scaleBand()
     .domain(data.map(d => d[0]))
-    .range([innerWidth, 0])
-    .padding(0.1);
+    .range([0, innerWidth])
+    .padding(0.3)
 
     const cScale = scaleLinear()
         .domain(extent(data.map(d => d[1])))
         .range(['#E2514F', 'white'])
-
-
     
-    const yAxis = axisLeft(yScale)
-    
+    // const yAxis = axisLeft(yScale)
 
-    const yAxisG = g
-        .append('g')
-        .attr("class", "yScale")
-        .attr('transform', `translate(${0},${0})`)
-        .call(yAxis)
+    // const yAxisG = g
+    //     .append('g')
+    //     .attr("class", "yScale")
+    //     .attr('transform', `translate(${0},${0})`)
+    //     // .call(yAxis)
 
-    yAxisG
-    .selectAll('.domain').remove()
+    // yAxisG
+    // .selectAll('.domain').remove()
 
     const xAxis = axisBottom(xScale)
-        .tickSize(-innerHeight)
+
+        // .tickSize(-innerHeight)
 
     const xAxisG = g
         .append('g')
@@ -67,17 +61,31 @@ function Vis1({ barState, setBarState }){
         .call(xAxis)
 
     xAxisG
+    .selectAll('text')
+        .attr("x", 20)
+        .attr("y", 0)
+        .style("text-anchor", "start")
+        .attr("transform", "rotate(90)")
+
+
+    xAxisG
     .selectAll('.domain').remove()
+
+
+    xAxisG
+    .selectAll('line').remove()
 
 
 
     g.selectAll('rect').data(data)
         .enter().append('rect')
         .attr('x', d => xScale(d[0]))
-        .attr('height', d => yScale(d[1]) )
+        .attr('y', d => -yScale(d[1])+innerHeight)
+        .attr('height', d => yScale(d[1]))
         .attr('width', xScale.bandwidth())
         .attr("fill", d => cScale(d[1]))
 
+        g.selectAll('text').data(data)
         // g.selectAll('rect').data(data)
         // .enter().append('rect')
         //   .attr('y', d => yScale(yValue(d)))
