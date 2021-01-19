@@ -10,7 +10,7 @@
 ### Geldsporen liegen niet
 Van het bedrijf [Follow The Money](https://www.ftm.nl/) hebben wij de opdracht gekregen om een datavisualisatie te maken dat gaat over de uitgaven van van politieke partijen als het gaat om adverteren. Er is open data te vinden over deze uitgaven en Follow the Money wil de inzichten uit deze [dataset](https://raw.githubusercontent.com/SimonPlanje/datavisFTM/main/public/data/facebook.json) graag op hun website kunnen weergeven. 
 
-## Onderzoeksvragen
+## Onderzoeksvraag
 
 > **Hoe kan de politieke op een overzichtlijke, interactieve manier worden weergegeven waardoor de gebruiker snel inzichten kan herkennen uit de data**
 
