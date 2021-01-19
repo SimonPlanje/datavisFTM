@@ -14,7 +14,7 @@ function FilterIntro(){
                     </div>
                     <div className='text'>
                     <p>500</p>
-                    <p>1000.000</p>
+                    <p>100.000</p>
                     </div>            
                     </div>
                 <div className='dateDotDiv'>
