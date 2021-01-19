@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/SimonPlanje/datavisFTM/static/css/main.b8950d55.chunk.css",
-    "main.js": "/SimonPlanje/datavisFTM/static/js/main.802a9ae5.chunk.js",
-    "main.js.map": "/SimonPlanje/datavisFTM/static/js/main.802a9ae5.chunk.js.map",
-    "runtime-main.js": "/SimonPlanje/datavisFTM/static/js/runtime-main.cec9bef6.js",
-    "runtime-main.js.map": "/SimonPlanje/datavisFTM/static/js/runtime-main.cec9bef6.js.map",
-    "static/js/2.2825c906.chunk.js": "/SimonPlanje/datavisFTM/static/js/2.2825c906.chunk.js",
-    "static/js/2.2825c906.chunk.js.map": "/SimonPlanje/datavisFTM/static/js/2.2825c906.chunk.js.map",
-    "static/js/3.400a01c2.chunk.js": "/SimonPlanje/datavisFTM/static/js/3.400a01c2.chunk.js",
-    "static/js/3.400a01c2.chunk.js.map": "/SimonPlanje/datavisFTM/static/js/3.400a01c2.chunk.js.map",
-    "index.html": "/SimonPlanje/datavisFTM/index.html",
-    "static/css/main.b8950d55.chunk.css.map": "/SimonPlanje/datavisFTM/static/css/main.b8950d55.chunk.css.map",
-    "static/js/2.2825c906.chunk.js.LICENSE.txt": "/SimonPlanje/datavisFTM/static/js/2.2825c906.chunk.js.LICENSE.txt"
+    "main.css": "/datavisFTM/static/css/main.b8950d55.chunk.css",
+    "main.js": "/datavisFTM/static/js/main.802a9ae5.chunk.js",
+    "main.js.map": "/datavisFTM/static/js/main.802a9ae5.chunk.js.map",
+    "runtime-main.js": "/datavisFTM/static/js/runtime-main.599f30dd.js",
+    "runtime-main.js.map": "/datavisFTM/static/js/runtime-main.599f30dd.js.map",
+    "static/js/2.2825c906.chunk.js": "/datavisFTM/static/js/2.2825c906.chunk.js",
+    "static/js/2.2825c906.chunk.js.map": "/datavisFTM/static/js/2.2825c906.chunk.js.map",
+    "static/js/3.400a01c2.chunk.js": "/datavisFTM/static/js/3.400a01c2.chunk.js",
+    "static/js/3.400a01c2.chunk.js.map": "/datavisFTM/static/js/3.400a01c2.chunk.js.map",
+    "index.html": "/datavisFTM/index.html",
+    "static/css/main.b8950d55.chunk.css.map": "/datavisFTM/static/css/main.b8950d55.chunk.css.map",
+    "static/js/2.2825c906.chunk.js.LICENSE.txt": "/datavisFTM/static/js/2.2825c906.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.cec9bef6.js",
+    "static/js/runtime-main.599f30dd.js",
     "static/js/2.2825c906.chunk.js",
     "static/css/main.b8950d55.chunk.css",
     "static/js/main.802a9ae5.chunk.js"
