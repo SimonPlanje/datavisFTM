@@ -98,11 +98,7 @@ p {
   flex-direction: row-reverse;
   background-color: var(--dark);
   padding: 1em;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
   top: 0;
-
-
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: lighter;
 }
@@ -117,6 +113,12 @@ height: 5em;
   background: linear-gradient(0deg,var(--lightblue) 0%, var(--darkblue) 100%);
 }
 
+.LGenderIntro {
+  background: linear-gradient(90deg,var(--pink) 0%, var(--blue) 100%);
+  width: 5em;
+  height: .8em;
+}
+
 .filter ul{
   display: flex;
   flex-direction: column;
@@ -129,7 +131,83 @@ height: 5em;
   list-style-type: none;
   color: white;
 }
+
+/* LEGEND FOR INTRO */
+
+.legendOnly {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: lighter;
+  margin: 2em 5em 10em 5em;
+}
+
+ .legendOnly .legend {
+   width: 15em;
+   text-align: center;
+  color:white;
+  display: flex;
+  flex-direction: column;
+}
+
+.legendOnly ul{
+  display: flex;
+  flex-direction: row;
+  margin-left: 1em;
+}
+
+.legendOnly li{
+  margin: 0em 1em;
+  list-style-type: none;
+}
+
+.legendOnly .legend h3{
+  font-size: .8em;
+  margin-bottom: 1em;
+}
+
+.legendOnly .circleClass{
+  width: .7em;
+  height: .7em;
+  background-color: white;
+  border-radius: 100%;
+  margin-right: .5em;
+
+}
+
+.legendOnly .dateDotDiv {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: .6em;
+}
+
+.circles{
+  display: flex;
+  flex-direction: row;
+  align-items: center;} 
+
+  .scaleLegend .text{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+.circle1, .circle2, .circle3, .circle4 {  
+  width: .3em;
+  height: .3em;
+  background-color: white;
+  border-radius: 100%;
+}
+.circle1{border: rgba(83, 83, 83) .6em solid;}
+.circle2{border: rgb(83, 83, 83) .9em solid;}
+.circle3{border: rgba(83, 83, 83) 1.2em solid;}
+.circle4{border: rgba(83, 83, 83) 1.5em solid;}
+
+
+
 /* svg coloring */
 .cls-1 {
   fill: #ececec;
   }
+

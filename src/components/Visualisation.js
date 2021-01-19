@@ -42,7 +42,6 @@ import {
    .domain(extent(data, d => d.avarageImpress))
    .range([20, 50])
 
-
    const gScale = scaleOrdinal()
        .domain([extent(data, d => d.male), extent(data, d => d.female)])
        .range(['var(--blue)', 'var(--pink)' ])
