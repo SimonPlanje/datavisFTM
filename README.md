@@ -1,8 +1,6 @@
-# datavisFTM
+# Datavis Follow The Money
 
-# frontend-applications
-
-**functional-programming en frontend data 20/21**  
+**Datavisualisatie Follow The Money**  
 **Auteur:** _Simon Planje_  
 [🔴 live gh-pages](https://simonplanje.github.io/datavisFTM/)
 
