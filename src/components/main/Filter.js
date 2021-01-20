@@ -3,15 +3,12 @@ function Filter({facebookState, setFilterData, filterData}){
     let bottom = 'Vrouw'
     let legendClass = 'LGender'
     
-if(filterData){}
     function showGender(){
         setFilterData("gender")     
     }
     
     function showAge(){
         setFilterData("age")
-        
-
     }
 
 

@@ -1,6 +1,6 @@
 import {json} from 'd3'
 
-const fetchData = (setFacebookStates, setFilterData, setBarstate, setHighLowGenderState) =>{
+const fetchData = (setFacebookStates, setFilterData, setBarstate, setHighLowGenderState, setDataAge, setAgeYoungBarState, setAgeOldBarState, setAgeMidBarState) =>{
 
     const facebookData = "https://raw.githubusercontent.com/SimonPlanje/datavisFTM/main/public/data/data.json"
 
@@ -220,66 +220,114 @@ fvd.map(d => youngvaluesfvd.push(d.twenty+d.young))
 fvd.map(d => teenervaluesfvd.push(d.thirdy+d.fourty))
 fvd.map(d => oldvaluesfvd.push(d.fifty+d.sixty))
 
-const allAgeArray = []
+const allAgeArrayYoung = []
+const allAgeArrayMid = []
+const allAgeArrayOld = []
 
-const arrAver = arr => {
-    allAgeArray.push(arr.reduce((a,b) => a + b, 0) / arr.length)}
+const arrAverYoung = arr => {
+    allAgeArrayYoung.push(arr.reduce((a,b) => a + b, 0) / arr.length)}
+
+    const arrAverMid = arr => {
+        allAgeArrayMid.push(arr.reduce((a,b) => a + b, 0) / arr.length)}
+
+        const arrAverOld = arr => {
+            allAgeArrayOld.push(arr.reduce((a,b) => a + b, 0) / arr.length)}
 
 
-arrAver(youngvaluessp)
-arrAver(teenervaluessp)
-arrAver(oldvaluessp)
+arrAverYoung(youngvaluessp)
+arrAverMid(teenervaluessp)
+arrAverOld(oldvaluessp)
 
-arrAver(youngvaluesd66)
-arrAver(teenervaluesd66)
-arrAver(oldvaluesd66)
+arrAverYoung(youngvaluesd66)
+arrAverMid(teenervaluesd66)
+arrAverOld(oldvaluesd66)
 
-arrAver(youngvaluesvvd)
-arrAver(teenervaluesvvd)
-arrAver(oldvaluesvvd)
+arrAverYoung(youngvaluesvvd)
+arrAverMid(teenervaluesvvd)
+arrAverOld(oldvaluesvvd)
 
-arrAver(youngvaluesdenk)
-arrAver(teenervaluesdenk)
-arrAver(oldvaluesdenk)
+arrAverYoung(youngvaluesdenk)
+arrAverMid(teenervaluesdenk)
+arrAverOld(oldvaluesdenk)
 
-arrAver(youngvaluespvdd)
-arrAver(teenervaluespvdd)
-arrAver(oldvaluespvdd)
+arrAverYoung(youngvaluespvdd)
+arrAverMid(teenervaluespvdd)
+arrAverOld(oldvaluespvdd)
 
-arrAver(youngvaluespvda)
-arrAver(teenervaluespvda)
-arrAver(oldvaluespvda)
+arrAverYoung(youngvaluespvda)
+arrAverMid(teenervaluespvda)
+arrAverOld(oldvaluespvda)
 
-arrAver(youngvaluesgroenlinks)
-arrAver(teenervaluesgroenlinks)
-arrAver(oldvaluesgroenlinks)
+arrAverYoung(youngvaluesgroenlinks)
+arrAverMid(teenervaluesgroenlinks)
+arrAverOld(oldvaluesgroenlinks)
 
-arrAver(youngvalueschristenunie)
-arrAver(teenervalueschristenunie)
-arrAver(oldvalueschristenunie)
+arrAverYoung(youngvalueschristenunie)
+arrAverMid(teenervalueschristenunie)
+arrAverOld(oldvalueschristenunie)
 
-arrAver(youngvaluesplus)
-arrAver(teenervaluesplus)
-arrAver(oldvaluesplus)
+arrAverYoung(youngvaluesplus)
+arrAverMid(teenervaluesplus)
+arrAverOld(oldvaluesplus)
 
-arrAver(youngvaluessgp)
-arrAver(teenervaluessgp)
-arrAver(oldvaluessgp)
+arrAverYoung(youngvaluessgp)
+arrAverMid(teenervaluessgp)
+arrAverOld(oldvaluessgp)
 
-arrAver(youngvaluescda)
-arrAver(teenervaluescda)
-arrAver(oldvaluescda)
+arrAverYoung(youngvaluescda)
+arrAverMid(teenervaluescda)
+arrAverOld(oldvaluescda)
 
-arrAver(youngvaluesfvd)
-arrAver(teenervaluesfvd)
-arrAver(oldvaluesfvd)
+arrAverYoung(youngvaluesfvd)
+arrAverMid(teenervaluesfvd)
+arrAverOld(oldvaluesfvd)
 
-console.log(allAgeArray)
-const getCompaniesAge = ['SP-jong', 'SP-volwassen', 'SP-oud','D66-jong','D66-volwassen','D66-oud', 'VVD-jong', 'VVD-volwassen','VVD-oud','DENK-jong', 'DENK-volwassen', 'DENK-oud', 'PvdD-jong', 'PvdD-volwassen', 'PvdD-oud', 'PvdA-jong', 'PvdA-volwassen', 'PvdA-oud','GroenLinks-jong', 'GroenLinks-volwassen', 'GroenLinks-oud','ChristenUnie-jong', 'ChristenUnie-volwassen', 'ChristenUnie-oud', '50Plus-jong', '50Plus-volwassen', '50Plus-oud', 'SGP-jong', 'SGP-volwassen', 'SGP-oud', 'CDA-jong', 'CDA-volwassen', 'CDA-oud', 'FvD-jong',  'FvD-volwassen', 'FvD-oud']
+// const getCompaniesAge = ['SP-jong', 'SP-volwassen', 'SP-oud','D66-jong','D66-volwassen','D66-oud', 'VVD-jong', 'VVD-volwassen','VVD-oud','DENK-jong', 'DENK-volwassen', 'DENK-oud', 'PvdD-jong', 'PvdD-volwassen', 'PvdD-oud', 'PvdA-jong', 'PvdA-volwassen', 'PvdA-oud','GroenLinks-jong', 'GroenLinks-volwassen', 'GroenLinks-oud','ChristenUnie-jong', 'ChristenUnie-volwassen', 'ChristenUnie-oud', '50Plus-jong', '50Plus-volwassen', '50Plus-oud', 'SGP-jong', 'SGP-volwassen', 'SGP-oud', 'CDA-jong', 'CDA-volwassen', 'CDA-oud', 'FvD-jong',  'FvD-volwassen', 'FvD-oud']
+const getCompaniesAge = ['SP', 'D66', 'VVD', 'DENK', 'PvdD', 'PvdA', 'GroenLinks', 'ChristenUnie', '50Plus', 'SGP', 'CDA', 'FvD']
 
-let ageArray = getCompaniesAge.map((d, i) => [d,  +allAgeArray[i]]);
+console.log(allAgeArrayMid)
 
-console.log(ageArray)
+let ageArrayYoung = getCompaniesAge.map((d, i) => [d,  +allAgeArrayYoung[i]]);
+let ageArrayMid = getCompaniesAge.map((d, i) => [d,  +allAgeArrayMid[i]]);
+let ageArrayOld = getCompaniesAge.map((d, i) => [d,  +allAgeArrayOld[i]]);
+
+console.log(ageArrayMid)
+
+let ageMaxYoung = Math.max(...allAgeArrayYoung)   
+let ageMaxMid = Math.max(...allAgeArrayMid)   
+let ageMaxOld = Math.max(...allAgeArrayOld)   
+
+let maxHighToLowAge = []
+
+ageArrayYoung.map(d =>{
+    if(ageMaxYoung === d[1]){
+        maxHighToLowAge.push(d[0])}})
+
+ageArrayMid.map(d =>{
+    if(ageMaxMid === d[1]){
+        maxHighToLowAge.push(d[0])}})
+
+ageArrayOld.map(d =>{
+    if(ageMaxOld === d[1]){
+        maxHighToLowAge.push(d[0])}})
+
+console.log(maxHighToLowAge)
+
+
+let dataAge = []
+
+data.filter(d => {
+    if(d.advertiser_name === maxHighToLowAge[0]){
+        dataAge.push(d)
+    }else if(d.advertiser_name === maxHighToLowAge[1]){
+        dataAge.push(d)
+    }else if(d.advertiser_name === maxHighToLowAge[2]){
+        dataAge.push(d)
+    }
+})
+
+console.log(dataAge)
+
 
 //BARCHARRT GENDER
 
@@ -312,7 +360,7 @@ cda.map(d => valuescda.push(d.male))
 fvd.map(d => valuesfvd.push(d.male))
 d66.map(d => valuesd66.push(d.male))
 
-console.log(valuessp)
+// console.log(valuessp)
 
 let politicsArray = []
 // console.log(politicsArray)
@@ -339,6 +387,12 @@ arrAvg(valuesfvd)
 let companyValue = getCompanies.map((d, i) => [d,  +politicsArray[i]]);
 let minMaxArray = []
 
+console.log(companyValue)
+console.log(ageArrayMid)
+console.log(politicsArray)
+
+
+
 let poliMin = Math.min(...politicsArray)    
 let poliMax = Math.max(...politicsArray)   
 
@@ -361,9 +415,17 @@ data.filter(d => {
     }
 })
 
+console.log(highLowData)
 
-if(highLowData != null){
+
+
+if(highLowData != null && dataAge != null){
     // console.log(data)
+    setAgeYoungBarState(ageArrayYoung)
+    setAgeMidBarState(ageArrayMid)
+    setAgeOldBarState(ageArrayOld)
+    setDataAge(dataAge)
+
     setHighLowGenderState(highLowData)
     setBarstate(companyValue)
     setFacebookStates(data)
