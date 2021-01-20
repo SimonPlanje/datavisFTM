@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/datavisFTM/static/css/main.de1a15c5.chunk.css",
-    "main.js": "/datavisFTM/static/js/main.c73b3493.chunk.js",
-    "main.js.map": "/datavisFTM/static/js/main.c73b3493.chunk.js.map",
+    "main.css": "/datavisFTM/static/css/main.a071da04.chunk.css",
+    "main.js": "/datavisFTM/static/js/main.f6d1a6de.chunk.js",
+    "main.js.map": "/datavisFTM/static/js/main.f6d1a6de.chunk.js.map",
     "runtime-main.js": "/datavisFTM/static/js/runtime-main.599f30dd.js",
     "runtime-main.js.map": "/datavisFTM/static/js/runtime-main.599f30dd.js.map",
     "static/js/2.ce14b66c.chunk.js": "/datavisFTM/static/js/2.ce14b66c.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.400a01c2.chunk.js": "/datavisFTM/static/js/3.400a01c2.chunk.js",
     "static/js/3.400a01c2.chunk.js.map": "/datavisFTM/static/js/3.400a01c2.chunk.js.map",
     "index.html": "/datavisFTM/index.html",
-    "static/css/main.de1a15c5.chunk.css.map": "/datavisFTM/static/css/main.de1a15c5.chunk.css.map",
+    "static/css/main.a071da04.chunk.css.map": "/datavisFTM/static/css/main.a071da04.chunk.css.map",
     "static/js/2.ce14b66c.chunk.js.LICENSE.txt": "/datavisFTM/static/js/2.ce14b66c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.599f30dd.js",
     "static/js/2.ce14b66c.chunk.js",
-    "static/css/main.de1a15c5.chunk.css",
-    "static/js/main.c73b3493.chunk.js"
+    "static/css/main.a071da04.chunk.css",
+    "static/js/main.f6d1a6de.chunk.js"
   ]
 }
