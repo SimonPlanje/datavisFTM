@@ -27,12 +27,13 @@ body{
   cursor: pointer;
 }
 
-.SVG {
-  background-color: var(--dark);
-}
 
 .yScale, .xScale{
   color: var(--white);
+}
+
+.visbox1, .visbox{
+  margin-top: 5em;
 }
 
 h1, h2 {
@@ -42,12 +43,23 @@ h1, h2 {
 }
 
 p {
+  margin-top: 1em;
   font-family: 'IBM Plex Sans', sans-serif;
   color: var(--white);
 }
 
+.headerDiv{
+  display: flex;
+  flex-direction: column;
+  margin: 0 10em 0 10em;
+}
+
   .headerImg{
-    max-height: 70vh;
+    object-fit: cover;
+    height: 20em;
+    top: -2em;
+    margin-bottom: 4em; 
+
   }
 
 
@@ -119,6 +131,28 @@ height: 5em;
   height: .8em;
 }
 
+.LAgeIntro {
+  background: linear-gradient(270deg,var(--lightblue) 0%, var(--darkblue) 100%);
+  width: 25em;
+  height: .8em;
+  margin: 1em 0em;
+}
+
+.legendOnly .legendAge {
+  width: 25em;
+  text-align: center;
+  font-size: .8em;
+ color:var(--white);
+ display: flex;
+ flex-direction: column;
+ align-content: center;
+}
+
+.legendOnly .legendAge ul{
+justify-content: space-between;
+margin-left: 0em;
+}
+
 .filter ul{
   display: flex;
   flex-direction: column;
@@ -129,23 +163,24 @@ height: 5em;
 
 .filter li{
   list-style-type: none;
-  color: white;
+  color: var(--white);
 }
 
 /* LEGEND FOR INTRO */
 
 .legendOnly {
+  color: var(--white);
   display: flex;
   justify-content: space-between;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: lighter;
-  margin: 2em 5em 10em 5em;
+  margin: 2em 5em 0em 5em;
 }
 
  .legendOnly .legend {
    width: 15em;
    text-align: center;
-  color:white;
+  color:var(--white);
   display: flex;
   flex-direction: column;
 }
@@ -169,7 +204,7 @@ height: 5em;
 .legendOnly .circleClass{
   width: .7em;
   height: .7em;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 100%;
   margin-right: .5em;
 
@@ -178,7 +213,7 @@ height: 5em;
 .legendOnly .dateDotDiv {
   display: flex;
   align-items: center;
-  color: white;
+  color: var(--white);
   font-size: .6em;
 }
 
@@ -196,7 +231,7 @@ height: 5em;
 .circle1, .circle2, .circle3, .circle4 {  
   width: .3em;
   height: .3em;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 100%;
 }
 .circle1{border: rgba(83, 83, 83) .6em solid;}
@@ -211,3 +246,28 @@ height: 5em;
   fill: #ececec;
   }
 
+
+  button {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.2em;
+    margin: 2em 0 10em 50%;
+    transform: translate(-50%, 0%);
+    padding: 1em 2em;
+    width: 14em;
+    text-align: center;
+    border: none;
+    border-radius: 1em;
+    background-color: var(--white);
+    
+  }
+
+  button:hover {
+  cursor: pointer;
+  background-color: var(--darktone);
+  color: var(--white);
+  transition: ease .1s;
+}
+
+  button:focus {
+    outline: none
+  }

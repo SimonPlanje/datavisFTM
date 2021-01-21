@@ -8,6 +8,7 @@ import {
     axisLeft,
     axisBottom,
     scaleOrdinal,
+    pie,
     text,
     
     } from 'd3'
@@ -16,13 +17,16 @@ import {
 
    
     const width = 1400
-    const height = 700
+    const height = 900
 
     const margin = { top: 60, right: 40, bottom: 88, left: 105 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
     const g = select('.dashboardGroup')
+    .attr('transform', `translate(${margin.left},${margin.right})`)
+
+    const h = select('.hoverDiv')
     .attr('transform', `translate(${margin.left},${margin.right})`)
 
 
@@ -40,7 +44,7 @@ import {
 
    const rScale = scaleLinear()
    .domain(extent(data, d => d.avarageImpress))
-   .range([20, 50])
+   .range([20, 80])
 
    const gScale = scaleOrdinal()
        .domain([extent(data, d => d.male), extent(data, d => d.female)])
@@ -120,14 +124,13 @@ const render = () => {
             let detail = select(this)
 
             detail
-            .attr('r', 20)
             .text('€ ' + d.toElement.__data__.avarageSpend + ',-')
             .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
             .attr('y', yScale(d.toElement.__data__.advertiser_name)+60)
             .style('font-family', 'IBM Plex Sans')
 
             // Specify where to put label of text
-            g.append('rect')
+            h.append('rect')
                 .attr('width', 200)
                 .attr('height', 200)
                 .attr('class', d.toElement.__data__.advertiser_id)
@@ -135,38 +138,43 @@ const render = () => {
                 .attr('y', yScale(d.toElement.__data__.advertiser_name))
                 .attr('fill', 'white')
 
-
-                g.append("text")
-                .text(d.toElement.__data__.avarageImpress + ' keer bekeken')
-                .attr('class', d.toElement.__data__.advertiser_id)
+                h.append("text")
+                .text(d.toElement.__data__.advertiser_name)
                 .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
                 .attr('y', yScale(d.toElement.__data__.advertiser_name)+30)
-                .style('font-family', 'IBM Plex Sans')
+                .style('font-family', 'Open Sans Condensed')
+                .style('font-size', 25)
 
 
-            g.append("text")
-                .text('€ ' + d.toElement.__data__.avarageSpend + ',-')
-                .attr('class', d.toElement.__data__.advertiser_id)
+                h.append("text")
+                .text(d.toElement.__data__.avarageImpress + ' keer bekeken')
                 .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
                 .attr('y', yScale(d.toElement.__data__.advertiser_name)+60)
                 .style('font-family', 'IBM Plex Sans')
+
+
+            h.append("text")
+                .text('€ ' + d.toElement.__data__.avarageSpend + ',-')
+                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+90)
+                .style('font-family', 'IBM Plex Sans')
           }
+
+          var colorScale = scaleOrdinal().domain(["banana", "cherry", "blueberry"])
+                                   .range(["#eeff00", "#ff0022", "#2200ff"]);
+
+
 
 
          function handleMouseOut(d, i) {  // Add interactivity
-            let element = select(`[class=` + '"' + d.target.__data__.advertiser_id + '"' + ']')
 
-            console.log(element)
             select(`[class="${d.target.__data__.advertiser_id}"]`)
             .remove()
 
-
-            .attr('id', d.target.__data__.advertiser_id)
-            .attr('fill', 'white')
-            .attr('r', 2)
+        
         //    console.log('.' + +d.target.__data__.advertiser_id) 
-            // selectAll('rect').remove()
-        //     selectAll('#' + d.target.__data__.advertiser_id).remove()
+            selectAll('.hoverDiv' + 'rect').remove()
+            selectAll('.hoverDiv ' + 'text').remove()
 
           }
 
@@ -175,6 +183,7 @@ const render = () => {
             <div className='d3div'>
                 <svg className="dashboard" width={width} height={height}>
                     <g className='dashboardGroup'></g>
+                    <g className="hoverDiv"></g>
                 </svg>
             </div>
         )

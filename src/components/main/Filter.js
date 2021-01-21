@@ -44,6 +44,8 @@ if(filterData === "gender"){
 
         return(
             <div className='filter'>
+                                <h1>Hoe zit het met de gender -en leeftijd targeting bij de andere politieke partijen?</h1>
+
                 <form className='filterForm'>
                     <label className='checked' id='button1'><input  onClick={but1} onChange={showGender} name='radio' type="radio" checked='checked'/>Gender </label>
                     <label className='unchecked' id='button2'><input  onClick={but2} onChange={showAge} name='radio' type="radio"/>Leeftijd </label>

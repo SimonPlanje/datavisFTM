@@ -15,17 +15,17 @@ import {
 function Vis1({ barState, highLowGenderState}){
 
     const width = 1400
-    const height = 200
+    const height = 250
 
     const widtha = 400
-    const heighta = 200
+    const heighta = 300
 
     const margina = { top: 60, right: 40, bottom: 88, left: 105 };
     const innerWidtha = widtha - margina.left - margina.right;
     const innerHeighta = heighta - margina.top - margina.bottom;
 
     const widthb = 1000
-    const heightb = 200
+    const heightb = 250
 
     const marginb = { top: 60, right: 40, bottom: 88, left: 105 };
     const innerWidthb = widthb - marginb.left - marginb.right;
