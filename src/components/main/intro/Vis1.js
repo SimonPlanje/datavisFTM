@@ -8,7 +8,7 @@ import {
     axisLeft,
     axisBottom,
     scaleOrdinal,
-    max
+    
     
     } from 'd3'
 

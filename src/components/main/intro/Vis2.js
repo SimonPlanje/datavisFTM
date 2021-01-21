@@ -1,7 +1,6 @@
 import {
     select,
     scaleLinear,
-    scaleBand,
     extent,
     scalePoint,
     scaleTime,
@@ -10,9 +9,8 @@ import {
     scaleOrdinal
     
     } from 'd3'
-import { render } from 'react-dom'
 
-function Vis2({dataAge, ageYoungBarState, ageMidBarState, ageOldBarState, filterAge}){
+function Vis2({dataAge}){
 
     const width = 1400
     const height = 300
@@ -24,24 +22,12 @@ function Vis2({dataAge, ageYoungBarState, ageMidBarState, ageOldBarState, filter
     const innerWidthb = widthb - marginb.left - marginb.right;
     const innerHeightb = heightb - marginb.top - marginb.bottom;
 
-
-
-
     const gb = select ('.vis2Bubble')
     .attr('transform', `translate(${marginb.left},${marginb.right})`)
 
-    // const g = select ('.vis2Bar')
-    // .attr('transform', `translate(${margina.left},${margina.right})`)
-    // .attr('transform', 'translate(' + (0) + ', 0)')
-
-
     if(dataAge != null){
     const datab = dataAge
-    // const dataYoung = ageYoungBarState
-    // const dataMid = ageMidBarState
-    // const dataOld = ageOldBarState
 
-//BUBBLEPLOT------------------------------------------------------
        //define scales
        const xScaleb = scaleTime()
        .domain(extent(datab, d => d.ad_delivery_start_time))
@@ -102,11 +88,6 @@ function Vis2({dataAge, ageYoungBarState, ageMidBarState, ageOldBarState, filter
             .style('stroke', d => gScaleb(d.thirdy))
             .style('stroke-opacity', 0.2)
             .style('stroke-width', d => rScaleb(d.avarageImpress))
-
-
-
-
-    
 
     }else{console.log('data not loaded')}
 

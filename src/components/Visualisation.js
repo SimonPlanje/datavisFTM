@@ -8,8 +8,6 @@ import {
     axisLeft,
     axisBottom,
     scaleOrdinal,
-    pie,
-    text,
     
     } from 'd3'
 
@@ -52,13 +50,11 @@ import {
 
    const aScale = scaleOrdinal()
        .domain(["young", "twenty", "thirdy", "fourty", "fifty", "sixty"])
-       .range(['var(--blue)', 'var(--darkblue)'])
+       .range(['var(--darkblue)', 'var(--blue)' ])
 
 
-
-
-       const yAxis = axisLeft(yScale)
-       .tickSize(-innerWidth)
+    const yAxis = axisLeft(yScale)
+    .tickSize(-innerWidth)
 
    const yAxisG = g
        .append('g')
@@ -90,7 +86,7 @@ const render = () => {
         strokeVar = d => gScale(d.male)
     }
     else if(filterData === "age"){
-       strokeVar =  d => aScale(d.thirdy)
+       strokeVar =  d => aScale((d.teener + d.young + d.twenty + d.thirdy + d.fourty + d.fifty + d.sixty)/7)
     }
 
     const circles = g.selectAll('circle')
@@ -120,50 +116,122 @@ const render = () => {
  
         function handleMouseOver(d, i) {  // Add interactivity
 
-            // Use D3 to select element, change color and size
-            let detail = select(this)
+// Use D3 to select element, change color and size
+let detail = select(this)
 
-            detail
-            .text('€ ' + d.toElement.__data__.avarageSpend + ',-')
-            .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
-            .attr('y', yScale(d.toElement.__data__.advertiser_name)+60)
-            .style('font-family', 'IBM Plex Sans')
+const detailScale = scaleLinear()
+            .domain([0, 0.1])
+            .range(['cyan', 'black'])
 
-            // Specify where to put label of text
-            h.append('rect')
-                .attr('width', 200)
-                .attr('height', 200)
-                .attr('class', d.toElement.__data__.advertiser_id)
-                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time))
-                .attr('y', yScale(d.toElement.__data__.advertiser_name))
-                .attr('fill', 'white')
+detail
+.text('€ ' + d.toElement.__data__.avarageSpend + ',-')
+.attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+.attr('y', yScale(d.toElement.__data__.advertiser_name)+60)
+.style('font-family', 'IBM Plex Sans')
+
+// Specify where to put label of text
+h.append('rect')
+    .attr('width', 300)
+    .attr('height', 250)
+    .attr('class', d.toElement.__data__.advertiser_id)
+    .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time))
+    .attr('y', yScale(d.toElement.__data__.advertiser_name))
+    .attr('fill', 'white')
+    .attr('border-radius', 5)
+
+    h.append("text")
+    .text(d.toElement.__data__.advertiser_name)
+    .attr('width', 1)
+    .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+    .attr('y', yScale(d.toElement.__data__.advertiser_name)+35)
+    .style('font-family', 'Open Sans Condensed')
+    .style('font-size', 25)
+
+    
+    h.append("text")
+    .text(d.toElement.__data__.ad_creative_link_title)
+    .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+    .attr('y', yScale(d.toElement.__data__.advertiser_name)+65)
+    .style('font-family', 'IBM Plex Sans')
+
+    h.append("text")
+    .text(d.toElement.__data__.avarageImpress + ' keer bekeken')
+    .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+    .attr('y', yScale(d.toElement.__data__.advertiser_name)+95)
+    .style('font-family', 'IBM Plex Sans')
+
+
+h.append("text")
+    .text('€ ' + d.toElement.__data__.avarageSpend + ',-')
+    .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+    .attr('y', yScale(d.toElement.__data__.advertiser_name)+125)
+    .style('font-family', 'IBM Plex Sans')
+
+            if(filterData === "gender"){
 
                 h.append("text")
-                .text(d.toElement.__data__.advertiser_name)
+                .text(Math.round(d.toElement.__data__.male * 100) + "% man")
                 .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
-                .attr('y', yScale(d.toElement.__data__.advertiser_name)+30)
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+155)
+                .style('fill', 'var(--blue)')
                 .style('font-family', 'Open Sans Condensed')
-                .style('font-size', 25)
-
 
                 h.append("text")
-                .text(d.toElement.__data__.avarageImpress + ' keer bekeken')
+                .text(Math.round(d.toElement.__data__.female * 100) + "% vrouw")
                 .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
-                .attr('y', yScale(d.toElement.__data__.advertiser_name)+60)
-                .style('font-family', 'IBM Plex Sans')
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+185)
+                .style('fill', 'var(--pink)')
+                .style('font-family', 'Open Sans Condensed')
 
-
-            h.append("text")
-                .text('€ ' + d.toElement.__data__.avarageSpend + ',-')
+            } else if(filterData === "age"){
+                h.append("text")
+                .text(Math.round(d.toElement.__data__.teener * 100) + "%   18-24")
                 .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
-                .attr('y', yScale(d.toElement.__data__.advertiser_name)+90)
-                .style('font-family', 'IBM Plex Sans')
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+155)
+                .style('fill', detailScale(d.toElement.__data__.teener))
+                .style('font-family', 'Open Sans Condensed')
+
+                console.log(d.toElement.__data__.fifty)
+
+                h.append("text")
+                .text(Math.round(d.toElement.__data__.twenty * 100) + "%   24-30")
+                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+185)
+                .style('fill', detailScale(d.toElement.__data__.twenty))
+                .style('font-family', 'Open Sans Condensed')
+
+                h.append("text")
+                .text(Math.round(d.toElement.__data__.thirdy * 100) + "%   30-40")
+                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+20)
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+215)
+                .style('fill', detailScale(d.toElement.__data__.thirdy))
+                .style('font-family', 'Open Sans Condensed')
+
+                h.append("text")
+                .text(Math.round(d.toElement.__data__.fourty * 100) + "%   40-50")
+                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+120)
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+155)
+                .style('fill', detailScale(d.toElement.__data__.fourty))
+                .style('font-family', 'Open Sans Condensed')
+
+                h.append("text")
+                .text(Math.round(d.toElement.__data__.fifty * 100) + "%   50-60")
+                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+120)
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+185)
+                .style('fill', detailScale(d.toElement.__data__.fifty))
+                .style('font-family', 'Open Sans Condensed')
+
+                h.append("text")
+                .text(Math.round(d.toElement.__data__.sixty * 100) + "%   65+")
+                .attr('x', xScale(d.toElement.__data__.ad_delivery_start_time)+120)
+                .attr('y', yScale(d.toElement.__data__.advertiser_name)+215)
+                .style('fill', detailScale(d.toElement.__data__.sixty))
+                .style('font-family', 'Open Sans Condensed')
+            }
+            
+
+                
           }
-
-          var colorScale = scaleOrdinal().domain(["banana", "cherry", "blueberry"])
-                                   .range(["#eeff00", "#ff0022", "#2200ff"]);
-
-
 
 
          function handleMouseOut(d, i) {  // Add interactivity
